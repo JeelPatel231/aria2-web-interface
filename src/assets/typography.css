@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700;800&family=Roboto:wght@100;400;700;900&display=swap');
+
+.text-headline1{
+  font-family: "Open Sans";
+  font-size: 95px;
+  letter-spacing: -1.5px;
+}
+.text-headline2{
+  font-family: "Open Sans";
+  font-size: 59px;
+  letter-spacing: -0.5px;
+}
+.text-headline3{
+  font-family: "Open Sans";
+  font-size: 48px;
+}
+.text-headline4{
+  font-family: "Open Sans";
+  font-size: 34px;
+  letter-spacing: 0.25px;
+}
+.text-headline5{
+  font-family: "Open Sans";
+  font-size: 24px;
+}
+.text-headline6{
+  font-family: "Open Sans";
+  font-size: 20px;
+  letter-spacing: 0.15px;
+}
+.text-body1{
+  font-family: "Roboto";
+  font-size: 16px;
+  letter-spacing: 0.5px;
+}
+.text-body2{
+  font-family: "Roboto";
+  font-size: 14px;
+  letter-spacing: 0.25px;
+}
+.text-subtitle1{
+  font-family: "Open Sans";
+  font-size: 16px;
+  letter-spacing: 0.15px;
+}
+.text-subtitle2{
+  font-family: "Open Sans";
+  font-size: 14px;
+  letter-spacing: 0.1px;
+}
+.text-button{
+  font-family: "Roboto";
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1.25px;
+}
+.text-overline{
+  font-family: "Roboto";
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+.text-caption{
+  font-family: "Roboto";
+  font-size: 12px;
+  letter-spacing: 0.4px;
+}
