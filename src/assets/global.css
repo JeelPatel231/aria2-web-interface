@@ -3,3 +3,11 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+body{
+    background-color: var(--md-sys-color-background);
+}
+
+.material-icons{
+    font-size: inherit;
+}
