@@ -1,7 +1,7 @@
 <!-- MAIN PAGE - COMPONENT TREE -->
 <div class="main-page">
-    <Siderail />
-    <svelte:component this={TorrentCardView}/>
+    <Siderail on:tabClicked={changeComponent}/>
+    <svelte:component this={ComponentDict[chosenComponentKey]}/>
 </div>
 
 <style>
@@ -20,5 +20,16 @@ import './assets/typography.css'  // TYPOGRAPHY CLASSES
 // COMPONENTS
 import Siderail from "./components/Siderail.svelte";
 import TorrentCardView from './views/TorrentCardView.svelte';
+
+// all the components respective to the tabs go here
+const ComponentDict = {
+    "home" : TorrentCardView,
+}
+
+let chosenComponentKey = "home"; // default is home
+
+const changeComponent = (e) => {
+    chosenComponentKey = e.detail;
+}
 
 </script>

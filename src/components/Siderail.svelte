@@ -8,8 +8,9 @@
 
     <!-- NAVIGATION RAIL ITEMS -->
     <div class="nested-vertical-flex">
-        <button class:active={activeTab == "home"} class="rail-item material-icons" on:click={()=>handleTabChange("home")} >home</button>
-        <button class:active={activeTab == "search"} class="rail-item material-icons" on:click={()=>handleTabChange("search")} >search</button>
+        {#each tabArray as tab}
+            <button class:active={activeTab == tab} class="rail-item material-icons" on:click={()=>handleTabChange(tab)} >{tab}</button>
+        {/each}
     </div>
     
 </div> <!-- /siderail -->
@@ -61,9 +62,16 @@ button.rail-item-big.primary{
 </style>
 
 <script lang="ts">
-let activeTab: string;
+import { createEventDispatcher } from 'svelte';
+const dispatch = createEventDispatcher();
+
+//  all the tabs with material icon and name go here
+const tabArray = ["home","search"]
+
+let activeTab: string = "home" // default is home
+
 const handleTabChange = (tabName) => {
     activeTab = tabName;
-    // OTHER CODE TO BE PUT FOR HANDLING TAB CHANGES
+    dispatch("tabClicked", tabName);
 }
 </script>
