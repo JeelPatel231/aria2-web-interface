@@ -9,7 +9,10 @@
     <!-- NAVIGATION RAIL ITEMS -->
     <div class="nested-vertical-flex">
         {#each tabArray as tab}
-            <button class:active={activeTab == tab} class="rail-item material-icons" on:click={()=>handleTabChange(tab)} >{tab}</button>
+        <div class="rail-item-wrapper" on:click={()=>handleTabChange(tab)}>
+            <button class:active={activeTab == tab} class="rail-item material-icons">{tab}</button>
+            <div class="icon-label body2">{tab}</div>
+        </div>
         {/each}
     </div>
     
@@ -27,6 +30,17 @@
     display: flex;
     flex-direction: column;
     text-align: center;
+}
+.rail-item-wrapper{
+    cursor: pointer;
+    padding-bottom: 8px;
+}
+.rail-item{
+    width: 72px;
+}
+.icon-label{
+    text-transform: capitalize;
+    color: var(--md-sys-color-on-secondary-container);
 }
 .siderail button{
     color: var(--md-sys-color-on-surface);
@@ -57,6 +71,7 @@ button.rail-item-big.primary{
 .nested-vertical-flex{
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 @media only screen and (max-width : 600px){
@@ -78,7 +93,6 @@ button.rail-item-big.primary{
     .rail-item{
         height: min-content;
         align-self: center;
-        width: 72px;
     }
 }
 </style>

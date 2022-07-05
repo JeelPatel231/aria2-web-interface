@@ -12,7 +12,7 @@
 @media only screen and (max-width : 600px){
     .main-page{
         /* padding bottom for mobile devices */
-        padding: 0 0 60px 0;
+        padding: 0 0 88px 0;
     }
 }
 </style>
