@@ -46,6 +46,7 @@
     color: var(--md-sys-color-on-surface);
     background: none;
     outline: none;
+    cursor: pointer;
     border: none;
     text-align: center;
     margin: 8px 0;
@@ -102,7 +103,7 @@ import { createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
 
 //  all the tabs with material icon and name go here
-const tabArray = ["home","search"]
+const tabArray = ["home","search","settings"]
 
 let activeTab: string = "home" // default is home
 
