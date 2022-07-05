@@ -19,11 +19,11 @@
 .siderail{
     height: 100vh;
     padding: 0 8px;
-    width: 90px;
-    /* position: fixed; */
+    width: 92px;
+    position: fixed;
+    left: 0;
     background-color: var(--md-sys-color-surface);
     border-right: 2px solid var(--md-sys-color-outline);
-    transition: 200ms ease;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -59,6 +59,28 @@ button.rail-item-big.primary{
     flex-direction: column;
 }
 
+@media only screen and (max-width : 600px){
+    .siderail{
+        bottom: 0;
+        padding: 0 0 0 8px;
+        flex-direction: row-reverse;
+        width: 100%;
+        height: min-content;
+        border: none;
+    }
+    .big-button-container{
+        margin: 0 8px;
+    }
+    .nested-vertical-flex{
+        flex-direction: row;
+        margin-right: auto;
+    }
+    .rail-item{
+        height: min-content;
+        align-self: center;
+        width: 72px;
+    }
+}
 </style>
 
 <script lang="ts">

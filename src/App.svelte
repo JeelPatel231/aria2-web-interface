@@ -6,9 +6,14 @@
 
 <style>
 .main-page{
-    display: grid;
-    grid-template-columns: min-content 1fr;
-    height: 100vh;
+    /* padding left for sidebar */
+    padding: 0 0 0 92px;
+}
+@media only screen and (max-width : 600px){
+    .main-page{
+        /* padding bottom for mobile devices */
+        padding: 0 0 60px 0;
+    }
 }
 </style>
 
