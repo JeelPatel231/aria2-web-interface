@@ -1,11 +1,21 @@
-<div class="settings-container headline1">
-    <div class="header">
+<div class="settings-container">
+    <!-- HEADER -->
+    <div class="padded-h padded-v display3">
         SETTINGS
     </div>
-    <div class="settings-body body1">
-        <M3input icon="public" label="JsonRPC URL" bind:value={RPC_INPUT_URL} func={()=>{WS_RPC_URL.set(RPC_INPUT_URL)}}/>
-        <M3input icon="password" label="JsonRPC Secret" bind:value={RPC_INPUT_SECRET} func={()=>{WS_RPC_SECRET.set(RPC_INPUT_SECRET)}}/>
+
+    <!-- START TOKENS -->
+    <div class="padded-h headline4">
+        TOKENS
     </div>
+    <M3input icon="public" label="JsonRPC URL" bind:value={RPC_INPUT_URL} func={()=>{WS_RPC_URL.set(RPC_INPUT_URL)}}/>
+    <M3input icon="password" label="JsonRPC Secret" bind:value={RPC_INPUT_SECRET} func={()=>{WS_RPC_SECRET.set(RPC_INPUT_SECRET)}}/>
+    
+    <!-- START DISPLAY  -->
+    <div class="padded-h headline4">
+        DISPLAY
+    </div>
+    <M3Checkbox icon="dark_mode" label="Dark Theme" bind:checked={isDarkTheme} />
 </div>
 
 <style>
@@ -13,17 +23,26 @@
     padding: 16px 0 0 16px;
     color: var(--md-sys-color-on-surface);
 }
-.header{
-    padding: 18px 0 18px 42px;
+.padded-h{
+    padding-left: 42px;
+}
+.padded-v{
+    padding-top: 18px;
+    padding-bottom: 18px;
 }
 </style>
 
 <script lang="ts">
-import M3input from "../components/M3input.svelte"; // component import
+//component imports
+import M3input from "../components/M3input.svelte"; 
+import M3Checkbox from "../components/M3Checkbox.svelte"; 
+
 import { WS_RPC_URL, WS_RPC_SECRET } from "../store/store"; // store imports
 
 
 let RPC_INPUT_URL = "ws://localhost:6800/jsonrpc" // default value of WS URL
 let RPC_INPUT_SECRET = "" // default value of RPC SECRET
+
+let isDarkTheme = false;
 
 </script>

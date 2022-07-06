@@ -19,7 +19,7 @@
 .label-icon{
     vertical-align: middle;
     font-size: 24px;
-    padding: 8px;
+    padding: 8px 12px 8px 4px;
 }
 .flex-parent{
     display: flex;
