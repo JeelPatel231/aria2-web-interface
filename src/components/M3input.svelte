@@ -46,16 +46,18 @@
     left: 10px;
     width: fit-content;
     background: var(--md-sys-color-background);
+    color: var(--md-sys-color-outline);
     font-size: 18px;
     padding: 0 4px;
     /* bottom when unfilled/unfocused */
-    top: 14px;
-    line-height: 12px;
+    top: 16px;
+    line-height: 10px;
     transition: 200ms ease;
     pointer-events: none;
 }
 
 .input-label-wrapper input:valid ~ .input-label, .input-label-wrapper input:focus ~ .input-label{
+    color: var(--md-sys-color-on-background);
     line-height: 4px;
     font-size: 10px;
     /* compensate for focused text-box highlighted border */
@@ -70,7 +72,7 @@
     font-size: 24px;
     padding: 8px;
     border-radius: 40px;
-    margin: 0 24px;
+    margin: 0 16px;
 }
 
 /* IF INPUT AND BUTTON ARE MERGED */
