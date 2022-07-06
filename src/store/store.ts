@@ -17,3 +17,19 @@ WS_RPC_URL.subscribe((value) => {
     WS = new WebSocket(value);
     assignAllHandlers(WS)
 })
+
+export const isDarkTheme = writable(false)
+
+isDarkTheme.subscribe((value)=>{
+    // why if else and not direct toggling?
+    // because 3rd option will be "Auto" in future
+    // so if its neither light or dark theme, it will be auto
+    if(value){
+        document.body.classList.add("dark-theme");
+        document.body.classList.remove("light-theme");
+    }
+    if(!value){
+        document.body.classList.add("light-theme");
+        document.body.classList.remove("dark-theme");
+    }
+})

@@ -9,13 +9,13 @@
         TOKENS
     </div>
     <M3input icon="public" label="JsonRPC URL" bind:value={RPC_INPUT_URL} func={()=>{WS_RPC_URL.set(RPC_INPUT_URL)}}/>
-    <M3input icon="password" label="JsonRPC Secret" bind:value={RPC_INPUT_SECRET} func={()=>{WS_RPC_SECRET.set(RPC_INPUT_SECRET)}}/>
+    <M3input icon="password" label="JsonRPC Secret" bind:value={$WS_RPC_SECRET} />
     
     <!-- START DISPLAY  -->
     <div class="padded-h headline4">
         DISPLAY
     </div>
-    <M3Checkbox icon="dark_mode" label="Dark Theme" bind:checked={isDarkTheme} />
+    <M3Checkbox icon="dark_mode" label="Dark Theme" bind:checked={$isDarkTheme} />
 </div>
 
 <style>
@@ -37,12 +37,9 @@
 import M3input from "../components/M3input.svelte"; 
 import M3Checkbox from "../components/M3Checkbox.svelte"; 
 
-import { WS_RPC_URL, WS_RPC_SECRET } from "../store/store"; // store imports
+import { WS_RPC_URL, WS_RPC_SECRET, isDarkTheme } from "../store/store"; // store imports
 
 
 let RPC_INPUT_URL = "ws://localhost:6800/jsonrpc" // default value of WS URL
-let RPC_INPUT_SECRET = "" // default value of RPC SECRET
-
-let isDarkTheme = false;
 
 </script>
