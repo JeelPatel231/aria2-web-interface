@@ -58,12 +58,12 @@ export class AriaWebSocket {
                         'numPieces','connections','errorCode','files','bittorrent']]);}
 
     tellWaiting = () => { this.wsreq('tellwaiting','aria2.tellWaiting', 
-                        [0,0,['gid','status','totalLength','completedLength','uploadLength',
+                        [0,100,['gid','status','totalLength','completedLength','uploadLength',
                         'downloadSpeed','uploadSpeed','infoHash','numSeeders','pieceLength',
                         'numPieces','connections','errorCode','files','bittorrent']]);}
 
     tellStopped = () => { this.wsreq('tellstopped','aria2.tellStopped',
-                        [0,0,['gid','status','totalLength','completedLength','uploadLength',
+                        [0,100,['gid','status','totalLength','completedLength','uploadLength',
                         'downloadSpeed','uploadSpeed','infoHash','numSeeders','pieceLength',
                         'numPieces','connections','errorCode','files','bittorrent']]);}
 
