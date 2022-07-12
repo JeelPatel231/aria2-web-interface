@@ -43,28 +43,23 @@ const changeComponent = (e) => {
     chosenComponentKey = e.detail;
     switch (chosenComponentKey) {
         case "play_arrow": {
+            WS.clearAllPolling()
             WS.startActivePolling()
-            WS.clearWaitingPolling()
-            WS.clearStoppedPolling()
             break;
         }
         case "pause": {
+            WS.clearAllPolling()
             WS.startWaitingPolling()
-            WS.clearActivePolling()
-            WS.clearStoppedPolling()
             break;
         }
         case "stop": {
+            WS.clearAllPolling()
             WS.startStoppedPolling()
-            WS.clearActivePolling()
-            WS.clearWaitingPolling()
             break;
         }
         // stop polling on other components
         default: {
-            WS.clearActivePolling()
-            WS.clearWaitingPolling()
-            WS.clearStoppedPolling()
+            WS.clearAllPolling()
             break;
         }
     }

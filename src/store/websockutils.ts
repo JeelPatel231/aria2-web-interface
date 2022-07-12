@@ -84,4 +84,6 @@ export class AriaWebSocket {
     clearActivePolling = () => clearInterval(get(ACTIVE_POLL));
     clearWaitingPolling = () => clearInterval(get(WAITING_POLL));
     clearStoppedPolling = () => clearInterval(get(STOPPED_POLL));
+
+    clearAllPolling = () => {this.clearActivePolling();this.clearStoppedPolling();this.clearWaitingPolling()}
 }
