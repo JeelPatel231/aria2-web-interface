@@ -32,6 +32,8 @@ import { WS } from './store/store';
 // all the components respective to the tabs go here
 const ComponentDict = {
     "home" : TorrentCardView,
+    "pause" : TorrentCardView,
+    "stop" : TorrentCardView,
     "settings" : SettingsView,
 }
 

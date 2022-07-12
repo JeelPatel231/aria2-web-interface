@@ -1,5 +1,5 @@
 <div class="torrent-card-container">
-    {#each $ACTIVE_DOWNLOADS as entry }
+    {#each $DOWNLOADS_ARRAY as entry }
         <TorrentCard data={entry}/>
     {/each}
 </div>
@@ -16,7 +16,7 @@
 }
 </style>
 
-<script>
+<script lang="ts">
 import TorrentCard from "../components/TorrentCard.svelte";
-import { ACTIVE_DOWNLOADS } from "../store/store";
+import { DOWNLOADS_ARRAY } from "../store/store";
 </script>
