@@ -31,7 +31,7 @@ import { WS } from './store/store';
 
 // all the components respective to the tabs go here
 const ComponentDict = {
-    "home" : TorrentCardView,
+    "play_arrow" : TorrentCardView,
     "pause" : TorrentCardView,
     "stop" : TorrentCardView,
     "settings" : SettingsView,
@@ -42,7 +42,7 @@ let chosenComponentKey:string;
 const changeComponent = (e) => {
     chosenComponentKey = e.detail;
     switch (chosenComponentKey) {
-        case "home": {
+        case "play_arrow": {
             WS.startActivePolling()
             WS.clearWaitingPolling()
             WS.clearStoppedPolling()
@@ -70,6 +70,6 @@ const changeComponent = (e) => {
     }
 }
 
-changeComponent({detail:"home"}); // set home as default and start polls
+changeComponent({detail:"play_arrow"}); // set active as default and start polls
 
 </script>

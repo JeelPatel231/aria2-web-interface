@@ -104,13 +104,13 @@ const dispatch = createEventDispatcher();
 
 //  all the tabs with material icon and name go here
 const tabArray = {
-    "home" : "Active",
+    "play_arrow" : "Active",
     "pause" : "Paused",
     "stop" : "Stopped",
     "settings" : "Settings",
 } 
 
-let activeTab: string = "home" // default is home
+let activeTab: string = "play_arrow" // default is active downloads
 
 const handleTabChange = (tabName) => {
     activeTab = tabName;
