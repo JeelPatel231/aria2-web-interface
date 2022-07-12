@@ -1,4 +1,4 @@
-<div class="download-card body1" on:click={()=>{console.log(data.gid);WS.wsreq('pause','aria2.pause',[data.gid])}}>
+<div class="download-card body1">
     <!-- HEADER -->
 
     <div class="title headline3 span-entire-row">
@@ -15,10 +15,23 @@
     </div>
 
     <!-- FOOTER -->
-    <span class="material-icons">north</span> <span>{formatBytes(data.uploadSpeed)}/s</span>
-    <span class="material-icons">south</span> <span>{formatBytes(data.downloadSpeed)}/s</span>
-    <span class="material-icons">north</span> <span>seeders : {data.numSeeders}</span>
-    <span class="material-icons">south</span> <span>peers : {data.connections}</span>
+    {#if data.status == "active"}
+        <span class="material-icons">north</span> <span>{formatBytes(data.uploadSpeed)}/s</span>
+        <span class="material-icons">south</span> <span>{formatBytes(data.downloadSpeed)}/s</span>
+        <span class="material-icons">north</span> <span>seeders : {data.numSeeders}</span>
+        <span class="material-icons">south</span> <span>peers : {data.connections}</span>
+    {/if}
+
+    {#if data.status != "removed"}
+        <div class="work-btn-container span-entire-row">
+            {#if data.status == "active"}
+                <span class="work-btns" on:click={()=>{WS.wsreq('pause','aria2.pause',[data.gid])}}> <span class="material-icons">pause</span> Pause</span>
+            {:else if data.status == "paused" }
+                <span class="work-btns" on:click={()=>{WS.wsreq('unpause','aria2.unpause',[data.gid])}}> <span class="material-icons">play_arrow</span> Resume</span>
+            {/if}
+            <span class="work-btns"  on:click={()=>{WS.wsreq('remove','aria2.remove',[data.gid])}}><span class="material-icons">stop</span> Stop</span>
+        </div>
+    {/if}
 
 </div>
 
@@ -34,7 +47,7 @@
     border-radius: 16px;
     flex-grow: 1;
     display: grid;
-    grid-template-rows: min-content min-content min-content min-content;
+    grid-template-rows: min-content;
     grid-template-columns: 20px 1fr 20px 1fr;
 }
 .span-entire-row{
@@ -67,6 +80,26 @@ span{
     height: 100%;
     background-color: var(--md-sys-color-on-primary-container);
     width: 0%;
+}
+
+/* buttons */
+.work-btn-container{
+    display: flex;
+    margin-top: 8px;
+}
+.work-btns{
+    padding: 4px 16px;
+    margin: 4px;
+    background-color: rgb(0 0 0 / 20%);
+    border-radius: 20px;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+}
+.work-btns span.material-icons {
+    padding-top: 0;
+    margin-right: 4px;
 }
 </style>
 

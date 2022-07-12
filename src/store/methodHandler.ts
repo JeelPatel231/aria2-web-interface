@@ -4,4 +4,5 @@ export const mapOfMethodFunctions = {
     "aria2.onDownloadComplete": console.log,
     "aria2.onDownloadError": console.log,
     "aria2.onDownloadPause": console.log,
+    "aria2.onDownloadStop": console.log,
 }

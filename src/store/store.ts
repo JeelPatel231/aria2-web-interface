@@ -40,14 +40,3 @@ isDarkTheme.subscribe((value)=>{
         document.body.classList.remove("dark-theme");
     }
 })
-
-async function k() {
-    await new Promise(r => setTimeout(r, 200));
-    WS.wsreq("adduri","aria2.addUri",[["https://speed.hetzner.de/1GB.bin"]])
-    // WS.wsreq("adduri","aria2.addUri",[["magnet:?xt=urn:btih:51818AF477A5A40398BCA294CDEFF6615EF21E21&dn=The+Founder+%282016%29+%5B1080p%5D+%5BYTS%5D+%5BYIFY%5D&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2F9.rarbg.com%3A2710%2Fannounce&tr=udp%3A%2F%2Fp4p.arenabg.com%3A1337&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=http%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Fopentracker.i2p.rocks%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fcoppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.zer0day.to%3A1337%2Fannounce"]])
-    WS.wsreq('tellactive','aria2.tellActive',
-                            [['gid','status','totalLength','completedLength','uploadLength',
-                            'downloadSpeed','uploadSpeed','infoHash','numSeeders','pieceLength',
-                            'numPieces','connections','errorCode','files','bittorrent']]);
-}
-k()
