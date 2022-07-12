@@ -11,9 +11,10 @@ export const WAITING_DOWNLOADS = writable([]) // waiting downloads global array
 export const STOPPED_DOWNLOADS = writable([]) // stopped downloads global array 
 
 // POLLING FUNCTION LOOPERS, so i start/can stop polling from any component
-export const ACTIVE_POLL = writable(0);
-export const WAITING_POLL = writable(0);
-export const STOPPED_POLL = writable(0);
+// https://stackoverflow.com/a/56239226
+export const ACTIVE_POLL: Writable<ReturnType<typeof setTimeout>> = writable();
+export const WAITING_POLL: Writable<ReturnType<typeof setTimeout>> = writable();
+export const STOPPED_POLL: Writable<ReturnType<typeof setTimeout>> = writable();
 
 // WEBSOCKET OBJECT
 export let WS : AriaWebSocket;
