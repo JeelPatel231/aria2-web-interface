@@ -1,14 +1,15 @@
+import type { DownloadDataEntry } from '../interfaces/downloadEntry';
 import { Writable, writable } from 'svelte/store';
 import { AriaWebSocket } from './websockutils';
 
 // can try to use local storage of browser to reference the same but aight
-export const WS_RPC_URL = writable("ws://localhost:6800/jsonrpc");
-export const WS_RPC_SECRET = writable("");
-export const WS_POLL_INTERVAL = writable(3000); // poll interval in ms, default = 3s or 3000ms
+export const WS_RPC_URL: Writable<string> = writable("ws://localhost:6800/jsonrpc");
+export const WS_RPC_SECRET: Writable<string> = writable("");
+export const WS_POLL_INTERVAL: Writable<number> = writable(3000); // poll interval in ms, default = 3s or 3000ms
 
-export const ACTIVE_DOWNLOADS = writable([]) // active downloads global array 
-export const WAITING_DOWNLOADS = writable([]) // waiting downloads global array 
-export const STOPPED_DOWNLOADS = writable([]) // stopped downloads global array 
+export const ACTIVE_DOWNLOADS: Writable<DownloadDataEntry[]> = writable([]) // active downloads global array 
+export const WAITING_DOWNLOADS: Writable<DownloadDataEntry[]> = writable([]) // waiting downloads global array 
+export const STOPPED_DOWNLOADS: Writable<DownloadDataEntry[]> = writable([]) // stopped downloads global array 
 
 // POLLING FUNCTION LOOPERS, so i start/can stop polling from any component
 // https://stackoverflow.com/a/56239226
