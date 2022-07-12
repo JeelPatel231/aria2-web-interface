@@ -8,10 +8,10 @@
 
     <!-- NAVIGATION RAIL ITEMS -->
     <div class="nested-vertical-flex">
-        {#each tabArray as tab}
+        {#each Object.entries(tabArray) as [tab,label]}
         <div class="rail-item-wrapper" on:click={()=>handleTabChange(tab)}>
             <button class:active={activeTab == tab} class="rail-item material-icons">{tab}</button>
-            <div class="icon-label body2">{tab}</div>
+            <div class="icon-label body2">{label}</div>
         </div>
         {/each}
     </div>
@@ -103,7 +103,12 @@ import { createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
 
 //  all the tabs with material icon and name go here
-const tabArray = ["home","pause","stop","settings"]
+const tabArray = {
+    "home" : "Active",
+    "pause" : "Paused",
+    "stop" : "Stopped",
+    "settings" : "Settings",
+} 
 
 let activeTab: string = "home" // default is home
 
