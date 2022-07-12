@@ -103,7 +103,7 @@ import { createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
 
 //  all the tabs with material icon and name go here
-const tabArray = ["home","search","settings"]
+const tabArray = ["home","pause","stop","settings"]
 
 let activeTab: string = "home" // default is home
 

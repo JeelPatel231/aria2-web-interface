@@ -8,6 +8,7 @@
     <div class="padded-h headline4">
         TOKENS
     </div>
+    <!-- this has a set buttons so it doesnt make new websocket objects on every character change -->
     <M3input icon="public" label="JsonRPC URL" bind:value={RPC_INPUT_URL} func={()=>{WS_RPC_URL.set(RPC_INPUT_URL)}}/>
     <M3input icon="password" label="JsonRPC Secret" bind:value={$WS_RPC_SECRET} />
     

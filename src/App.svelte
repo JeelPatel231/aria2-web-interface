@@ -26,16 +26,48 @@ import Siderail from "./components/Siderail.svelte";
 import SettingsView from './views/SettingsView.svelte';
 import TorrentCardView from './views/TorrentCardView.svelte';
 
+// store variables
+import { WS } from './store/store';
+
 // all the components respective to the tabs go here
 const ComponentDict = {
     "home" : TorrentCardView,
     "settings" : SettingsView,
 }
 
-let chosenComponentKey = "home"; // default is home
+let chosenComponentKey:string;
 
 const changeComponent = (e) => {
     chosenComponentKey = e.detail;
+    switch (chosenComponentKey) {
+        case "home": {
+            WS.startActivePolling()
+            WS.clearWaitingPolling()
+            WS.clearStoppedPolling()
+            break;
+        }
+        case "pause": {
+            WS.startWaitingPolling()
+            WS.clearActivePolling()
+            WS.clearStoppedPolling()
+            break;
+        }
+        case "stop": {
+            WS.startStoppedPolling()
+            WS.clearActivePolling()
+            WS.clearWaitingPolling()
+            break;
+        }
+        // stop polling on other components
+        default: {
+            WS.clearActivePolling()
+            WS.clearWaitingPolling()
+            WS.clearStoppedPolling()
+            break;
+        }
+    }
 }
+
+changeComponent({detail:"home"}); // set home as default and start polls
 
 </script>

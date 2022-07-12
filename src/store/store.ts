@@ -1,25 +1,32 @@
-import { get, writable } from 'svelte/store';
-
-const assignAllHandlers = (sock) => {
-    sock.onopen = (e) => console.log(e)
-    sock.onmessage = (e) => console.log(e)
-}
+import { Writable, writable } from 'svelte/store';
+import { AriaWebSocket } from './websockutils';
 
 // can try to use local storage of browser to reference the same but aight
 export const WS_RPC_URL = writable("ws://localhost:6800/jsonrpc");
 export const WS_RPC_SECRET = writable("");
+export const WS_POLL_INTERVAL = writable(3000); // poll interval in ms, default = 3s or 3000ms
 
-// WEBSOCKET HANDLERS
-let WS : WebSocket = new WebSocket(get(WS_RPC_URL));
+export const ACTIVE_DOWNLOADS = writable([]) // active downloads global array 
+export const WAITING_DOWNLOADS = writable([]) // waiting downloads global array 
+export const STOPPED_DOWNLOADS = writable([]) // stopped downloads global array 
 
+// POLLING FUNCTION LOOPERS, so i start/can stop polling from any component
+export const ACTIVE_POLL = writable(0);
+export const WAITING_POLL = writable(0);
+export const STOPPED_POLL = writable(0);
+
+// WEBSOCKET OBJECT
+export let WS : AriaWebSocket;
+
+//  run when WS_RPC_URL changes
 WS_RPC_URL.subscribe((value) => {
     console.log("changed value of websocket URL")
-    WS = new WebSocket(value);
-    assignAllHandlers(WS)
+    WS = new AriaWebSocket(value);
 })
 
-export const isDarkTheme = writable(false)
+export const isDarkTheme = writable(true)
 
+// when the variable isDarkTheme changes
 isDarkTheme.subscribe((value)=>{
     // why if else and not direct toggling?
     // because 3rd option will be "Auto" in future

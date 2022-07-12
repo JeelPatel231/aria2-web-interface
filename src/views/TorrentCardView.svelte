@@ -1,5 +1,7 @@
 <div class="torrent-card-container">
-    <TorrentCard />
+    {#each $ACTIVE_DOWNLOADS as entry }
+        <TorrentCard data={entry}/>
+    {/each}
 </div>
 
 <style>
@@ -16,4 +18,5 @@
 
 <script>
 import TorrentCard from "../components/TorrentCard.svelte";
+import { ACTIVE_DOWNLOADS } from "../store/store";
 </script>

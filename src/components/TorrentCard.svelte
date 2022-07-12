@@ -1,21 +1,24 @@
-<div class="download-card body1">
+<div class="download-card body1" on:click={()=>{console.log(data.gid);WS.wsreq('pause','aria2.pause',[data.gid])}}>
     <!-- HEADER -->
-    <div class="title headline1 span-entire-row">Big.Buck.Bunny.mp4</div>
+
+    <div class="title headline3 span-entire-row">
+        {data.bittorrent ? (data.bittorrent.info ? data.bittorrent.info.name : data.files[0].path.split('/').reverse()[0]) :  data.files[0].path.split('/').reverse()[0]}
+    </div>
 
     <!-- DOWNLOAD SIZE -->
-    <span class="material-icons">download_for_offline</span>
-    <span class="size">13 MB / 126 MB</span>
+    <span class="material-icons size-padding">download_for_offline</span>
+    <span class="size size-padding">{formatBytes(data.completedLength)} / {formatBytes(data.totalLength)}</span>
     
     <!-- PROGRESS BAR -->
     <div class="download-bar span-entire-row">
-        <div class="progress-bar"></div>
+        <div class="progress-bar" style="width:{parseFloat(data.completedLength)/parseFloat(data.totalLength)*100}%"></div>
     </div>
 
     <!-- FOOTER -->
-    <span class="material-icons">north</span> 5.7 Mbps
-    <span class="material-icons">south</span> 1.4 Mbps
-    <span class="material-icons">north</span> seeders : 14
-    <span class="material-icons">south</span> peers : 7
+    <span class="material-icons">north</span> <span>{formatBytes(data.uploadSpeed)}/s</span>
+    <span class="material-icons">south</span> <span>{formatBytes(data.downloadSpeed)}/s</span>
+    <span class="material-icons">north</span> <span>seeders : {data.numSeeders}</span>
+    <span class="material-icons">south</span> <span>peers : {data.connections}</span>
 
 </div>
 
@@ -31,7 +34,7 @@
     border-radius: 16px;
     flex-grow: 1;
     display: grid;
-    grid-template-rows: 1fr 1fr min-content min-content;
+    grid-template-rows: min-content min-content min-content min-content;
     grid-template-columns: 20px 1fr 20px 1fr;
 }
 .span-entire-row{
@@ -43,9 +46,13 @@
 }
 span{
     align-self: center;
+    padding-top: 4px;
 }
 .size{
     grid-column: 2 / -1;
+}
+.size-padding{
+    padding: 8px 0;
 }
 /* PROGRESS BAR */
 .download-bar{
@@ -59,11 +66,65 @@ span{
 .progress-bar{
     height: 100%;
     background-color: var(--md-sys-color-on-primary-container);
-    width: 12%;
+    width: 0%;
 }
 </style>
 
 
-<script>
-// WEBSOCKET POLLING DATA WILL BE PASSED TO COMPONENT PER POLL
+<script lang="ts">
+import { WS } from "../store/store"
+
+interface BittorrentInterface{
+    announceList: string[],
+    info : {
+        name: string,
+    }
+    mode: string,
+}
+
+interface FileInterface{
+    completedLength: string,
+    index: string,
+    length: string,
+    path: string,
+    selected: string,
+}
+interface DownloadDataEntry{
+    //common
+    completedLength: string,
+    connections: string,
+    downloadSpeed: string,
+    files: FileInterface[],
+    gid: string,
+    numPieces: string,
+    pieceLength: string,
+    status: string,
+    totalLength: string,
+    uploadLength: string,
+    uploadSpeed: string,
+
+    // urls
+    
+    // bittorrent
+    bittorrent: BittorrentInterface,
+    numSeeders: string,
+}
+
+export let data: DownloadDataEntry;
+
+// https://stackoverflow.com/a/18650828
+function formatBytes(num: string, decimals:number = 2) : string {
+    let bytes:number =  parseInt(num)
+
+    if (bytes === 0) return '0 B';
+
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+}
+
 </script>
