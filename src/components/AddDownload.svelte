@@ -3,11 +3,11 @@
         Add Download
     </div>
 
-    <div class="headline5 padded-h padded-v">Links</div>
+    <div class="subhead1 padded-h padded-v">LINKS</div>
     <M3TextArea icon="public" placeholder="Magnet URI or Direct Link" bind:value={textareaInput}/>
     <div class="caption padded-h padded-v">*Multiple links can be added using newline</div>
 
-    <div class="headline5 padded-h padded-v">Headers</div>
+    <div class="subhead1 padded-h padded-v">HEADERS</div>
     <M3TextArea icon="checklist" rows={1} placeholder="'Header-Key' : 'Header-Value'" expandable={true} bind:value={headersInput}/>
     <div class="caption padded-h padded-v">*User-Agent can be changed by setting User-Agent header above</div>
 
@@ -27,6 +27,10 @@
     border: none;
     border-radius: 100px;
     font-weight: bold;
+}
+.subhead1{
+    font-weight: bold;
+    color: var(--md-sys-color-primary);
 }
 </style>
 

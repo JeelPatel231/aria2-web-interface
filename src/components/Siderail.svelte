@@ -26,10 +26,11 @@
     position: fixed;
     left: 0;
     background-color: var(--md-sys-color-surface);
-    border-right: 2px solid var(--md-sys-color-outline);
+    border-right: 2px solid var(--md-sys-color-surface-variant);
     display: flex;
     flex-direction: column;
     text-align: center;
+    z-index: 1;
 }
 .rail-item-wrapper{
     cursor: pointer;

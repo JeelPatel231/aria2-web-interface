@@ -33,7 +33,7 @@
 }
 .input-label-wrapper input{
     background: none;
-    border: 1px solid var(--md-sys-color-on-surface);
+    border: 2px solid var(--md-sys-color-surface-variant);
     color:var(--md-sys-color-on-surface);
     padding: 8px;
     border-radius: var(--corner-radius);
@@ -55,6 +55,9 @@
     transition: 200ms ease;
     pointer-events: none;
 }
+.input-label-wrapper input:focus{
+    border: 2px solid var(--md-sys-color-on-surface);
+}
 
 .input-label-wrapper input:valid ~ .input-label, .input-label-wrapper input:focus ~ .input-label{
     color: var(--md-sys-color-on-background);
@@ -66,12 +69,12 @@
 
 .submitbtn{
     vertical-align: middle;
-    background: none;
-    color: var(--md-sys-color-on-surface);
-    border: 1px solid var(--md-sys-color-on-surface);
+    color: var(--md-sys-color-on-primary);
+    border: none;
     font-size: 24px;
-    padding: 8px;
-    border-radius: 40px;
+    padding: 10px;
+    background: var(--md-sys-color-primary);
+    border-radius: 16px;
     margin: 0 16px;
 }
 

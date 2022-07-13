@@ -14,14 +14,19 @@ span{
 }
 textarea{
     background: none;
-    border: 1px solid var(--md-sys-color-on-background);
+    border: 2px solid var(--md-sys-color-surface-variant);
     outline: none;
     resize: none;
     color: var(--md-sys-color-on-background);
     width: 100%;
-    padding: 8px;
+    padding: 0 8px;
     border-radius: 8px;
+    padding-bottom: 10px;
     word-break: break-all;
+    padding-top: 6px;
+}
+textarea:focus{
+    border: 2px solid var(--md-sys-color-on-background);
 }
 </style>
 

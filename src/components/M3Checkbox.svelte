@@ -55,8 +55,10 @@ input[type=checkbox]{
     display: flex;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
     
     background-color: var(--md-sys-color-outline);
+    border: 2px solid var(--md-sys-color-surface);
     height: 100%;
     width: 26px;
     border-radius: 16px;
@@ -68,6 +70,7 @@ input[type=checkbox]{
 /* slidable circle on checked */
 input[type=checkbox]:checked ~ .toggle::after{
     background-color: var(--md-sys-color-primary-container);
+    border: 2px solid var(--md-sys-color-primary-container);
     content: "check";
 
     left: 100%;

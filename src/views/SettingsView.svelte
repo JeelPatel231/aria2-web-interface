@@ -5,7 +5,7 @@
     </div>
 
     <!-- START TOKENS -->
-    <div class="padded-h headline4">
+    <div class="padded-h subhead1">
         TOKENS
     </div>
     <!-- this has a set buttons so it doesnt make new websocket objects on every character change -->
@@ -13,7 +13,7 @@
     <M3input icon="password" label="JsonRPC Secret" bind:value={$WS_RPC_SECRET} />
     
     <!-- START DISPLAY  -->
-    <div class="padded-h headline4">
+    <div class="padded-h subhead1">
         DISPLAY
     </div>
     <M3Checkbox icon="dark_mode" label="Dark Theme" bind:checked={$isDarkTheme} />
@@ -23,6 +23,10 @@
 .settings-container{
     padding: 16px 0 0 16px;
     color: var(--md-sys-color-on-surface);
+}
+.subhead1{
+    font-weight: bold;
+    color: var(--md-sys-color-primary);
 }
 </style>
 
