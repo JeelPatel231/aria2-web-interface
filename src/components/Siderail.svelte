@@ -3,7 +3,7 @@
     <!-- Container for adding more primary buttons in future, eg : hamburger -->
     <div class="big-button-container">
         <!-- PRIMARY FLOATING ACTION BUTTON -->
-        <button class="rail-item-big primary material-icons">add</button>
+        <button on:click={()=>handleTabChange("add_download")} class="rail-item-big primary material-icons">add</button>
     </div>
 
     <!-- NAVIGATION RAIL ITEMS -->
@@ -99,6 +99,8 @@ button.rail-item-big.primary{
 </style>
 
 <script lang="ts">
+import { DOWNLOADS_ARRAY } from '../store/store';
+
 import { createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
 
@@ -113,6 +115,7 @@ const tabArray = {
 let activeTab: string = "play_arrow" // default is active downloads
 
 const handleTabChange = (tabName) => {
+    DOWNLOADS_ARRAY.set([]) // empty the display array on tab change
     activeTab = tabName;
     dispatch("tabClicked", tabName);
 }

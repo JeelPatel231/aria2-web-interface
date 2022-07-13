@@ -24,13 +24,6 @@
     padding: 16px 0 0 16px;
     color: var(--md-sys-color-on-surface);
 }
-.padded-h{
-    padding-left: 42px;
-}
-.padded-v{
-    padding-top: 18px;
-    padding-bottom: 18px;
-}
 </style>
 
 <script lang="ts">

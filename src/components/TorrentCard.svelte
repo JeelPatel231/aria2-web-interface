@@ -22,17 +22,19 @@
         <span class="material-icons">south</span> <span>peers : {data.connections}</span>
     {/if}
 
-    {#if data.status != "removed"}
-        <div class="work-btn-container span-entire-row">
-            {#if data.status == "active"}
-                <span class="work-btns" on:click={()=>{WS.wsreq('pause','aria2.pause',[data.gid])}}> <span class="material-icons">pause</span> Pause</span>
-            {:else if data.status == "paused" }
-                <span class="work-btns" on:click={()=>{WS.wsreq('unpause','aria2.unpause',[data.gid])}}> <span class="material-icons">play_arrow</span> Resume</span>
-            {/if}
+    <div class="work-btn-container span-entire-row">
+        {#if data.status == "active"}
+            <span class="work-btns" on:click={()=>{WS.wsreq('pause','aria2.pause',[data.gid])}}> <span class="material-icons">pause</span> Pause</span>
             <span class="work-btns"  on:click={()=>{WS.wsreq('remove','aria2.remove',[data.gid])}}><span class="material-icons">stop</span> Stop</span>
-        </div>
-    {/if}
-
+        {:else if data.status == "paused" }
+            <span class="work-btns" on:click={()=>{WS.wsreq('unpause','aria2.unpause',[data.gid])}}> <span class="material-icons">play_arrow</span> Resume</span>
+            <span class="work-btns"  on:click={()=>{WS.wsreq('remove','aria2.remove',[data.gid])}}><span class="material-icons">stop</span> Stop</span>
+        {:else if data.status == "complete"}
+            <span class="overline">completed</span>
+        {:else if data.status == "removed"}
+            <span class="overline">removed</span>
+        {/if}
+    </div>
 </div>
 
 <style>

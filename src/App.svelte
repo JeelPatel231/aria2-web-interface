@@ -1,7 +1,11 @@
 <!-- MAIN PAGE - COMPONENT TREE -->
 <div class="main-page">
+
     <Siderail on:tabClicked={changeComponent}/>
-    <svelte:component this={ComponentDict[chosenComponentKey]}/>
+
+    <div class="component-container">        
+        <svelte:component this={ComponentDict[chosenComponentKey]}/>
+    </div>
 </div>
 
 <style>
@@ -15,6 +19,9 @@
         padding: 0 0 88px 0;
     }
 }
+.component-container{
+    position: relative;
+}
 </style>
 
 <script lang="ts">
@@ -25,12 +32,14 @@ import './assets/m3colors.css'    // MATERIAL3 UI COLOR PALLETE
 import Siderail from "./components/Siderail.svelte";
 import SettingsView from './views/SettingsView.svelte';
 import TorrentCardView from './views/TorrentCardView.svelte';
+import AddDownload from './components/AddDownload.svelte';
 
 // store variables
 import { WS } from './store/store';
 
 // all the components respective to the tabs go here
 const ComponentDict = {
+    "add_download" : AddDownload,
     "play_arrow" : TorrentCardView,
     "pause" : TorrentCardView,
     "stop" : TorrentCardView,
