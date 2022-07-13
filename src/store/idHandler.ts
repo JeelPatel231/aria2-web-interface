@@ -27,7 +27,7 @@ export const mapOfIdFunctions = {
                         if (e.error != undefined ){handleError(e);return}
                         DOWNLOADS_ARRAY.set(e.result)
                     },
-    "pause": handleUpdates,
-    "unpause": handleUpdates,
+    "pause": (_) => {WS.tellActive()},
+    "unpause": (_) => {WS.tellWaiting()},
     "remove": handleUpdates,
 }

@@ -3,7 +3,6 @@ import { WS } from "./store"
 const handleUpdates = (e) => {
     // template for handling updates
     console.log(e)
-    WS.tellActive()
 }
 
 export const mapOfMethodFunctions = {

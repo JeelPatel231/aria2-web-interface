@@ -24,15 +24,15 @@
 
     <div class="work-btn-container span-entire-row">
         {#if data.status == "active"}
-            <span class="work-btns" on:click={()=>{WS.wsreq('pause','aria2.pause',[data.gid])}}> <span class="material-icons">pause</span> Pause</span>
-            <span class="work-btns"  on:click={()=>{WS.wsreq('remove','aria2.remove',[data.gid])}}><span class="material-icons">stop</span> Stop</span>
+            <span class="work-btns" on:click={()=>{WS.pauseDownload(data.gid)}}> <span class="material-icons">pause</span> Pause</span>
+            <span class="work-btns"  on:click={()=>{WS.removeDownload(data.gid)}}><span class="material-icons">stop</span> Stop</span>
         {:else if data.status == "paused" }
-            <span class="work-btns" on:click={()=>{WS.wsreq('unpause','aria2.unpause',[data.gid])}}> <span class="material-icons">play_arrow</span> Resume</span>
-            <span class="work-btns"  on:click={()=>{WS.wsreq('remove','aria2.remove',[data.gid])}}><span class="material-icons">stop</span> Stop</span>
+            <span class="work-btns" on:click={()=>{WS.unpauseDownload(data.gid)}}> <span class="material-icons">play_arrow</span> Resume</span>
+            <span class="work-btns"  on:click={()=>{WS.removeDownload(data.gid)}}><span class="material-icons">close</span>Remove</span>
         {:else if data.status == "complete"}
             <span class="overline">completed</span>
         {:else if data.status == "removed"}
-            <span class="overline">removed</span>
+            <span class="overline">Stopped</span>
         {/if}
     </div>
 </div>
