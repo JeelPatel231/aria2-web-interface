@@ -114,11 +114,10 @@ const tabArray = {
     "settings" : "Settings",
 } 
 
-let activeTab: string = "play_arrow" // default is active downloads
+export let activeTab: string = "play_arrow" // default is active downloads
 
 const handleTabChange = (tabName) => {
     DOWNLOADS_ARRAY.set([]) // empty the display array on tab change
-    activeTab = tabName;
     dispatch("tabClicked", tabName);
 }
 </script>

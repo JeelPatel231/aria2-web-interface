@@ -1,10 +1,10 @@
 <!-- MAIN PAGE - COMPONENT TREE -->
 <div class="main-page">
 
-    <Siderail on:tabClicked={changeComponent}/>
+    <Siderail on:tabClicked={changeComponent} activeTab={chosenComponentKey}/>
 
     <div class="component-container">        
-        <svelte:component this={ComponentDict[chosenComponentKey]}/>
+        <svelte:component on:downloadAdded={changeComponent} this={ComponentDict[chosenComponentKey]}/>
     </div>
 </div>
 
