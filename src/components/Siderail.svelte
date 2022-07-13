@@ -67,7 +67,8 @@ button.rail-item-big{
     border-radius: 24px;
 }
 button.rail-item-big.primary{
-    background-color: var(--md-sys-color-primary-container);
+    background-color: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
 }
 .nested-vertical-flex{
     display: flex;
