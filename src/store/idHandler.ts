@@ -1,9 +1,20 @@
-import { DOWNLOADS_ARRAY } from "./store"
+import { DOWNLOADS_ARRAY, WS } from "./store"
+
+const handleError = (e) => {
+    // template error handling function, thinking of a toast message on error
+    DOWNLOADS_ARRAY.set([])
+    console.log("error",e)
+}
+
+const handleUpdates = (e) => {
+    console.log(e)
+    WS.tellActive()
+}
 
 export const mapOfIdFunctions = {
     // everything is set to console log for now
-    "adduri" : console.log,
-    "addtorrent" : console.log,
+    "adduri" : handleUpdates,
+    "addtorrent" : handleUpdates,
     "tellactive" : (e) => {
                         if (e.error != undefined ){handleError(e);return}
                         DOWNLOADS_ARRAY.set(e.result)
@@ -16,13 +27,7 @@ export const mapOfIdFunctions = {
                         if (e.error != undefined ){handleError(e);return}
                         DOWNLOADS_ARRAY.set(e.result)
                     },
-    "pause": console.log,
-    "unpause": console.log,
-    "remove": console.log,
-}
-
-const handleError = (e) => {
-    // template error handling function, thinking of a toast message on error
-    DOWNLOADS_ARRAY.set([])
-    console.log("error",e)
+    "pause": handleUpdates,
+    "unpause": handleUpdates,
+    "remove": handleUpdates,
 }
