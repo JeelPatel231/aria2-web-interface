@@ -1,4 +1,5 @@
 import type { DownloadDataEntry } from '../interfaces/downloadEntry';
+import type { Toast } from '../interfaces/toast';
 import { Writable, writable } from 'svelte/store';
 import { AriaWebSocket } from './websockutils';
 
@@ -14,6 +15,9 @@ export const DOWNLOADS_ARRAY: Writable<DownloadDataEntry[]> = writable([]) // ac
 export const ACTIVE_POLL: Writable<ReturnType<typeof setTimeout>> = writable();
 export const WAITING_POLL: Writable<ReturnType<typeof setTimeout>> = writable();
 export const STOPPED_POLL: Writable<ReturnType<typeof setTimeout>> = writable();
+
+// toasts queue
+export const TOAST_QUEUE: Writable<Toast[]> = writable([]);
 
 // WEBSOCKET OBJECT
 export let WS : AriaWebSocket;

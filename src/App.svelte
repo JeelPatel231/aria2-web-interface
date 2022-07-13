@@ -6,6 +6,8 @@
     <div class="component-container">        
         <svelte:component on:downloadAdded={changeComponent} this={ComponentDict[chosenComponentKey]}/>
     </div>
+
+    <NotificationToast />
 </div>
 
 <style>
@@ -33,6 +35,7 @@ import Siderail from "./components/Siderail.svelte";
 import SettingsView from './views/SettingsView.svelte';
 import TorrentCardView from './views/TorrentCardView.svelte';
 import AddDownload from './components/AddDownload.svelte';
+import NotificationToast from './components/NotificationToast.svelte';
 
 // store variables
 import { WS } from './store/store';
