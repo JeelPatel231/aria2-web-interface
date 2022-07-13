@@ -41,14 +41,13 @@ import { createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
 
 let textareaInput:string = "";
-// headers dont work for now
 let headersInput:string = "";
 
 const handleLinks = () => {
     // split new lines and remove empty elements and run a forEach loop
     // convert to set to remove duplicate entries
     new Set(textareaInput.split('\n').filter(x => x)).forEach((value)=>{
-        WS.wsreq("adduri","aria2.addUri",[ [value] ])
+        WS.wsreq("adduri","aria2.addUri",[ [value] , {"header":headersInput.split('\n')} ])
     })
 
     dispatch("downloadAdded", "play_arrow"); // switch to active downloads tab after adding
