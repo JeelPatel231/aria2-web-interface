@@ -59,3 +59,20 @@ export const showNotification = (err:Toast) => {
     }, 5000 ) // 5000ms timeout to clear notification
     
 }
+
+export const updateCurrentTabArray = () => {
+    switch(get(activeTab)){
+        case "play_arrow": {
+            WS.tellActive();
+            break;
+        }
+        case "pause":{
+            WS.tellWaiting();
+            break;
+        } 
+        case "stop":{
+            WS.tellStopped();
+            break;
+        }
+    }
+}

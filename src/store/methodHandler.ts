@@ -1,8 +1,9 @@
-import { showNotification } from "./store"
+import { showNotification, updateCurrentTabArray } from "./store"
 
 const handleUpdates = (e) => {
     // template for handling updates
     let error:boolean = ["aria2.onDownloadError"].includes(e.method)
+    updateCurrentTabArray()
     showNotification({head:e.method,desc:e.params,error:error})
 }
 
