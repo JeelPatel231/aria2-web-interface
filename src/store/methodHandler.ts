@@ -1,8 +1,9 @@
-import { WS } from "./store"
+import { showNotification } from "./store"
 
 const handleUpdates = (e) => {
     // template for handling updates
-    console.log(e)
+    let error:boolean = ["aria2.onDownloadError"].includes(e.method)
+    showNotification({head:e.method,desc:e.params,error:error})
 }
 
 export const mapOfMethodFunctions = {

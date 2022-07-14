@@ -1,6 +1,6 @@
 import type { DownloadDataEntry } from '../interfaces/downloadEntry';
 import type { Toast } from '../interfaces/toast';
-import { Writable, writable } from 'svelte/store';
+import { get, Writable, writable } from 'svelte/store';
 import { AriaWebSocket } from './websockutils';
 
 // can try to use local storage of browser to reference the same but aight
@@ -44,3 +44,14 @@ isDarkTheme.subscribe((value)=>{
         document.body.classList.remove("dark-theme");
     }
 })
+
+export const showNotification = (err:Toast) => {
+    TOAST_QUEUE.set([ ...(get(TOAST_QUEUE)) , err ]) // assign this way for reactivity
+    
+    // remove element from the queue after 5000ms
+    setTimeout(()=>{
+        get(TOAST_QUEUE).shift();
+        TOAST_QUEUE.set(get(TOAST_QUEUE)) // assign for reactivity
+    }, 5000 ) // 5000ms timeout to clear notification
+    
+}

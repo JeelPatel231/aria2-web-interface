@@ -1,4 +1,7 @@
 export interface Toast{
     head:string,
-    desc:string
+    desc:{
+        gid:string,
+    }[],
+    error?:boolean,
 }

@@ -6,12 +6,18 @@ interface BittorrentInterface{
     mode: string,
 }
 
+interface UriInterface{
+    status : string,
+    uri: string,
+}
+
 interface FileInterface{
     completedLength: string,
     index: string,
     length: string,
     path: string,
     selected: string,
+    uris: UriInterface[];
 }
 export interface DownloadDataEntry{
     //common

@@ -1,13 +1,15 @@
 <div class="toast-container">
     <!-- text needs to be unique since its a key -->
     {#each $TOAST_QUEUE as err (err.desc)}
-    <div class="toast" transition:fly|local={{ x: 200 }} animate:flip >
-        <div class="headline4">
+    <div class="toast" class:error={err.error} transition:fly|local={{ x: 200 }} animate:flip={{ duration: 200 }} >
+        <div class="body1">
             {err.head}
         </div>
-        <div class="body1">
-            {err.desc}
+        {#each err.desc as txt}
+        <div class="caption">
+            {txt.gid}
         </div>
+        {/each}
     </div>
     {/each}
 </div>
@@ -23,6 +25,8 @@
     display: flex;
     align-items: flex-end;
     flex-direction: column;
+    /* click through */
+    pointer-events: none;
 }
 .toast{
     background-color: var(--md-sys-color-secondary-container);
@@ -31,6 +35,12 @@
     padding: 16px;
     margin-top: 16px;
     margin-right: 16px;
+    border: 2px solid var(--md-sys-color-outline);
+}
+.error{
+    background-color: var(--md-sys-color-error);
+    color: var(--md-sys-color-on-error);
+    border: none;
 }
 </style>
 
@@ -39,16 +49,4 @@ import { fly } from 'svelte/transition';
 import { flip } from 'svelte/animate';
 import { TOAST_QUEUE } from '../store/store'
 
-let count = 0;
-
-function showNotification(err){
-    $TOAST_QUEUE = [ ...($TOAST_QUEUE) , err ] // assign this way for reactivity
-    
-    // remove element from the queue after 5000ms
-    setTimeout(()=>{
-        $TOAST_QUEUE.shift();
-        $TOAST_QUEUE = $TOAST_QUEUE // assign for reactivity
-    }, 5000 )
-    
-}
 </script>

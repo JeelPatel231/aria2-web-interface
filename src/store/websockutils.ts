@@ -1,4 +1,4 @@
-import { WS_RPC_SECRET, WS_POLL_INTERVAL } from "./store"; // websocket vars
+import { WS_RPC_SECRET, WS_POLL_INTERVAL, showNotification } from "./store"; // websocket vars
 import { ACTIVE_POLL, WAITING_POLL, STOPPED_POLL } from "./store"; // poller functions
 import { get } from "svelte/store";
 import { mapOfMethodFunctions } from "./methodHandler";
@@ -14,9 +14,11 @@ export class AriaWebSocket {
     
     setupWebSocket = () => {
         // on socket open
-        this.WS.onopen = (e) => console.log(e)
+        this.WS.onopen = (e) => showNotification({head:"Websocket",desc:[{gid:"Connection Successful"}]})
         // on socket message
         this.WS.onmessage = (e) => this.onMessageHandler(e)
+        // on error
+        this.WS.onerror = (e) => showNotification({head:"Websocket",desc:[{gid:"Connection Failed"}],error:true})
     }
     
     onMessageHandler = (e) => { // handle the event
@@ -34,6 +36,11 @@ export class AriaWebSocket {
     wsreq = (id:string, method:string, params) => {
         if(this.WS.readyState !== 1){
             console.log('Connection lost or not yet open!');
+            showNotification({
+                head:"Websocket",
+                desc:[{gid:"Connection Lost or not open yet!"}],
+                error:true
+            })
             return
         };
         var json = {

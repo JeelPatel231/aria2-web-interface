@@ -1,8 +1,8 @@
-<div class="download-card body1">
+<div class="download-card body1" class:error={data.status == "error"}>
     <!-- HEADER -->
 
     <div class="title headline3 span-entire-row">
-        {data.bittorrent ? (data.bittorrent.info ? data.bittorrent.info.name : data.files[0].path.split('/').reverse()[0]) :  data.files[0].path.split('/').reverse()[0]}
+        {getCardTitle()}
     </div>
 
     <!-- DOWNLOAD SIZE -->
@@ -10,7 +10,7 @@
     <span class="size size-padding">{formatBytes(data.completedLength)} / {formatBytes(data.totalLength)}</span>
     
     <!-- PROGRESS BAR -->
-    <div class="download-bar span-entire-row">
+    <div class="download-bar span-entire-row" class:errorbar={data.status == "error"}>
         <div class="progress-bar" style="width:{parseFloat(data.completedLength)/parseFloat(data.totalLength)*100}%"></div>
     </div>
 
@@ -33,6 +33,8 @@
             <span class="overline">completed</span>
         {:else if data.status == "removed"}
             <span class="overline">Stopped</span>
+        {:else if data.status == "error"}
+            <span class="overline">Error</span>
         {/if}
     </div>
 </div>
@@ -103,6 +105,13 @@ span{
     padding-top: 0;
     margin-right: 4px;
 }
+.error{
+    background-color: var(--md-sys-color-error-container);
+    color: var(--md-sys-color-on-error-container);
+}
+.errorbar{
+    background-color: var(--md-sys-color-on-error-container);
+}
 </style>
 
 
@@ -125,6 +134,22 @@ function formatBytes(num: string, decimals:number = 2) : string {
     const i = Math.floor(Math.log(bytes) / Math.log(k));
 
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+}
+
+const getBaseNameSanitised = (path) => {
+    return path.split('/').filter(n=>n).reverse()[0]
+}
+
+const getCardTitle = () => {
+    //if file is torrent, this must be defined
+    if (data.bittorrent){
+        if (data.bittorrent.info) return data.bittorrent.info.name
+    }
+    // if file is from normal URL, path should contain fileName
+    if (data.files[0].path !== "") return getBaseNameSanitised(data.files[0].path)
+
+    // if download fails, the URL should contain the name (needs URL query params sanitising)
+    return getBaseNameSanitised(data.files[0].uris[0].uri)
 }
 
 </script>
