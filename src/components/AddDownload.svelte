@@ -37,8 +37,7 @@
 <script lang="ts">
 import { WS } from "../store/store";
 import M3TextArea from "./M3TextArea.svelte";
-import { createEventDispatcher } from 'svelte';
-const dispatch = createEventDispatcher();
+import { activeTab } from "../store/store";
 
 let textareaInput:string = "";
 let headersInput:string = "";
@@ -50,6 +49,6 @@ const handleLinks = () => {
         WS.wsreq("adduri","aria2.addUri",[ [value] , {"header":headersInput.split('\n')} ])
     })
 
-    dispatch("downloadAdded", "play_arrow"); // switch to active downloads tab after adding
+    $activeTab = "play_arrow"; // switch to active downloads tab after adding
 }
 </script>

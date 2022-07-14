@@ -3,14 +3,14 @@
     <!-- Container for adding more primary buttons in future, eg : hamburger -->
     <div class="big-button-container">
         <!-- PRIMARY FLOATING ACTION BUTTON -->
-        <button on:click={()=>handleTabChange("add_download")} class="rail-item-big primary material-icons">add</button>
+        <button on:click={()=>{$activeTab = "add_download"}} class="rail-item-big primary material-icons">add</button>
     </div>
 
     <!-- NAVIGATION RAIL ITEMS -->
     <div class="nested-vertical-flex">
         {#each Object.entries(tabArray) as [tab,label]}
-        <div class="rail-item-wrapper" on:click={()=>handleTabChange(tab)}>
-            <button class:active={activeTab == tab} class="rail-item material-icons">{tab}</button>
+        <div class="rail-item-wrapper" on:click={()=>{$activeTab = tab}}>
+            <button class:active={$activeTab == tab} class="rail-item material-icons">{tab}</button>
             <div class="icon-label body2">{label}</div>
         </div>
         {/each}
@@ -101,10 +101,7 @@ button.rail-item-big.primary{
 </style>
 
 <script lang="ts">
-import { DOWNLOADS_ARRAY } from '../store/store';
-
-import { createEventDispatcher } from 'svelte';
-const dispatch = createEventDispatcher();
+import { activeTab } from '../store/store';
 
 //  all the tabs with material icon and name go here
 const tabArray = {
@@ -113,11 +110,4 @@ const tabArray = {
     "stop" : "Stopped",
     "settings" : "Settings",
 } 
-
-export let activeTab: string = "play_arrow" // default is active downloads
-
-const handleTabChange = (tabName) => {
-    DOWNLOADS_ARRAY.set([]) // empty the display array on tab change
-    dispatch("tabClicked", tabName);
-}
 </script>

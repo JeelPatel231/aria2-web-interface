@@ -1,10 +1,10 @@
 <!-- MAIN PAGE - COMPONENT TREE -->
 <div class="main-page">
 
-    <Siderail on:tabClicked={changeComponent} activeTab={chosenComponentKey}/>
+    <Siderail on:tabClicked={changeComponent} />
 
     <div class="component-container">        
-        <svelte:component on:downloadAdded={changeComponent} this={ComponentDict[chosenComponentKey]}/>
+        <svelte:component on:downloadAdded={changeComponent} this={ComponentDict[$activeTab]}/>
     </div>
 
     <NotificationToast />
@@ -40,6 +40,9 @@ import NotificationToast from './components/NotificationToast.svelte';
 // store variables
 import { WS } from './store/store';
 
+// active tab
+import { activeTab } from './store/store';
+
 // all the components respective to the tabs go here
 const ComponentDict = {
     "add_download" : AddDownload,
@@ -49,11 +52,10 @@ const ComponentDict = {
     "settings" : SettingsView,
 }
 
-let chosenComponentKey:string;
+$: $activeTab, changeComponent() // run changeComponent whenever activeTab is changed
 
-const changeComponent = (e) => {
-    chosenComponentKey = e.detail;
-    switch (chosenComponentKey) {
+const changeComponent = () => {
+    switch ($activeTab) {
         case "play_arrow": {
             WS.clearAllPolling()
             WS.startActivePolling()
@@ -76,7 +78,5 @@ const changeComponent = (e) => {
         }
     }
 }
-
-changeComponent({detail:"play_arrow"}); // set active as default and start polls
 
 </script>

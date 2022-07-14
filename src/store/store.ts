@@ -19,6 +19,10 @@ export const STOPPED_POLL: Writable<ReturnType<typeof setTimeout>> = writable();
 // toasts queue
 export const TOAST_QUEUE: Writable<Toast[]> = writable([]);
 
+// active tab
+export const activeTab: Writable<string> = writable("play_arrow") // default is active downloads
+activeTab.subscribe(()=>{DOWNLOADS_ARRAY.set([])}) // clear downloads array when value is changed
+
 // WEBSOCKET OBJECT
 export let WS : AriaWebSocket;
 
