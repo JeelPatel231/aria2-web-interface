@@ -8,7 +8,7 @@
     <div class="caption padded-h padded-v">*Multiple links can be added using newline</div>
 
     <div class="subhead1 padded-h padded-v">HEADERS</div>
-    <M3TextArea icon="checklist" rows={1} placeholder="'Header-Key' : 'Header-Value'" expandable={true} bind:value={headersInput}/>
+    <M3TextArea icon="checklist" rows={1} placeholder="Header-Key: Header-Value" expandable={true} bind:value={headersInput}/>
     <div class="caption padded-h padded-v">*User-Agent can be changed by setting User-Agent header above</div>
 
     <button on:click={handleLinks} class="add padded-v padded-h">ADD</button>
