@@ -2,6 +2,9 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
+    /* removes blue highlight on tap on chrome mobile devices */
+    -webkit-tap-highlight-color: transparent;
 }
 
 body{
@@ -13,6 +16,14 @@ body{
 
 .material-icons{
     font-size: inherit;
+
+    /* disable selecting of icons as text */
+    user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 .padded-h{
