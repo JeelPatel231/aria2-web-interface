@@ -58,8 +58,12 @@
     grid-column: 1 / -1;
 }
 .title{
-    text-overflow: ellipsis;
     overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
 }
 span{
     align-self: center;
