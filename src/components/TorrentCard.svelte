@@ -152,8 +152,9 @@ const getCardTitle = () => {
     // if file is from normal URL, path should contain fileName
     if (data.files[0].path !== "") return getBaseNameSanitised(data.files[0].path)
 
-    // if download fails, the URL should contain the name (needs URL query params sanitising)
-    return getBaseNameSanitised(data.files[0].uris[0].uri)
+    // if download fails, the URL should contain the name
+    // split query params and get vanilla url
+    return getBaseNameSanitised(data.files[0].uris[0].uri.split('?',1)[0])
 }
 
 </script>
