@@ -34,10 +34,10 @@
 //component imports
 import M3input from "../components/M3input.svelte"; 
 import M3Checkbox from "../components/M3Checkbox.svelte"; 
-
+import { get } from "svelte/store";
 import { WS_RPC_URL, WS_RPC_SECRET, isDarkTheme } from "../store/store"; // store imports
 
 
-let RPC_INPUT_URL = "ws://localhost:6800/jsonrpc" // default value of WS URL
+let RPC_INPUT_URL = get(WS_RPC_URL) // default value of WS URL
 
 </script>
