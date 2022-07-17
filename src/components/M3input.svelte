@@ -3,7 +3,7 @@
         <span class="material-icons label-icon">{icon}</span>
     {/if}
     <span class="input-label-wrapper">
-        <input spellcheck="false" type="text" required class="body1" class:merged={merged} bind:value={value}>
+        <input spellcheck="false" type="text" bind:this={inputField} required class="body1" class:merged={merged} bind:value={value}>
         <span class="input-label">{label}</span>
     </span>
     {#if func}
@@ -91,10 +91,23 @@
 </style>
 
 <script lang="ts">
+import { onMount } from "svelte";
+
+
 export let value:string = "";
 export let func = null;
 export let icon:string = "";
 export let label:string = "";
 export let merged:boolean = false ;
 export let btnicon:string = "done";
+
+
+let inputField:HTMLElement;
+
+onMount(()=>{
+    // execute the passed function on pressing enter
+    inputField.onkeyup = (e) => {
+        if (e.key === "Enter" && func) func()
+    }
+})
 </script>
