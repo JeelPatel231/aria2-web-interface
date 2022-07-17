@@ -8,8 +8,12 @@ export class AriaWebSocket {
     readonly WS : WebSocket;
     
     constructor(uri:string){
-        this.WS = new WebSocket(uri);
-        this.setupWebSocket()
+        try{
+            this.WS = new WebSocket(uri);
+            this.setupWebSocket()
+        } catch (e) {
+            showNotification({head:"Websocket",desc:[{gid:e.message}],error:true})
+        }
     }
     
     setupWebSocket = () => {
@@ -34,6 +38,11 @@ export class AriaWebSocket {
     }
 
     wsreq = (id:string, method:string, params) => {
+        if(!this.WS){ // handle error when websocket is undefined, fixes the frozen ui after error in websocket connection
+            showNotification({head:"Websocket",desc:[{gid:"Connection not established!"}],error:true})
+            return
+        }
+
         if(this.WS.readyState !== 1){
             console.log('Connection lost or not yet open!');
             showNotification({
