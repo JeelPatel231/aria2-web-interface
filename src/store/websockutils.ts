@@ -66,19 +66,13 @@ export class AriaWebSocket {
         this.WS.send(JSON.stringify(json));
     };
 
-    pauseDownload = (gid) => {
-        this.wsreq('pause','aria2.pause',[gid])
-        this.tellActive()
-    }
+    pauseDownload = (gid) => this.wsreq('pause','aria2.pause',[gid])
 
-    unpauseDownload = (gid) => {
-        this.wsreq('unpause','aria2.unpause',[gid])
-        this.tellWaiting()
-    }
+    unpauseDownload = (gid) => this.wsreq('unpause','aria2.unpause',[gid])
 
-    removeDownload = (gid) => {
-        this.wsreq('remove','aria2.remove',[gid])
-    }
+    removeDownload = (gid) => this.wsreq('remove','aria2.remove',[gid])
+
+    tellStatus = (gid) => this.wsreq('tellstatus','aria2.tellStatus', [gid])
 
     // CALLS START HERE
     tellActive = () => { this.wsreq('tellactive','aria2.tellActive',
