@@ -17,6 +17,8 @@
         DISPLAY
     </div>
     <M3Checkbox icon="dark_mode" label="Dark Theme" bind:checked={$isDarkTheme} />
+    <M3input icon="palette" label="CSS Theme" bind:value={CSS_INPUT_URL} func={()=>{CSS_URL.set(CSS_INPUT_URL)}}/>
+
 </div>
 
 <style>
@@ -35,9 +37,9 @@
 import M3input from "../components/M3input.svelte"; 
 import M3Checkbox from "../components/M3Checkbox.svelte"; 
 import { get } from "svelte/store";
-import { WS_RPC_URL, WS_RPC_SECRET, isDarkTheme } from "../store/store"; // store imports
+import { WS_RPC_URL, WS_RPC_SECRET, isDarkTheme, CSS_URL } from "../store/store"; // store imports
 
 
 let RPC_INPUT_URL = get(WS_RPC_URL) // default value of WS URL
-
+let CSS_INPUT_URL = get(CSS_URL) // default value from store
 </script>

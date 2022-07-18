@@ -23,6 +23,12 @@ export const TOAST_QUEUE: Writable<Toast[]> = writable([]);
 export const activeTab: Writable<string> = writable("play_arrow") // default is active downloads
 activeTab.subscribe(()=>{DOWNLOADS_ARRAY.set([])}) // clear downloads array when value is changed
 
+export const CSS_URL: Writable<string> = writable("") // custom theme URL
+// change href of the given link id in main page
+CSS_URL.subscribe((val)=>{
+    document.getElementById("custom-css-link").setAttribute("href",val)
+})
+
 // WEBSOCKET OBJECT
 export let WS : AriaWebSocket;
 
