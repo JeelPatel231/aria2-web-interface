@@ -24,9 +24,6 @@ const handleUpdates = (e) => {
 
 }
 
-// https://stackoverflow.com/a/68315766
-const hex2bin = (data) => data.split('').map(i => parseInt(i, 16).toString(2).padStart(4, '0')).join('');
-
 const tellStatusHandler = (e) => {
     CURRENT_DETAIL.set(e.result)
 }

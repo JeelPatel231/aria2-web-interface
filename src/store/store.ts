@@ -89,3 +89,35 @@ export const updateCurrentTabArray = () => {
         }
     }
 }
+
+export const getCardTitle = (data) => {
+    const getBaseNameSanitised = (path) => {
+        return path.split('/').filter(n=>n).reverse()[0]
+    }
+
+    //if file is torrent, this must be defined
+    if (data.bittorrent){
+        if (data.bittorrent.info) return data.bittorrent.info.name
+    }
+    // if file is from normal URL, path should contain fileName
+    if (data.files[0].path !== "") return getBaseNameSanitised(data.files[0].path)
+
+    // if download fails, the URL should contain the name
+    // split query params and get vanilla url
+    return getBaseNameSanitised(data.files[0].uris[0].uri.split('?',1)[0])
+}
+
+// https://stackoverflow.com/a/18650828
+export const formatBytes = (num: string, decimals:number = 2) : string => {
+    let bytes:number =  parseInt(num)
+
+    if (bytes === 0) return '0 B';
+
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+}

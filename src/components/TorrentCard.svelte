@@ -2,7 +2,7 @@
     <!-- HEADER -->
 
     <div class="title headline3 span-entire-row">
-        {getCardTitle()}
+        {getCardTitle(data)}
     </div>
 
     <!-- DOWNLOAD SIZE -->
@@ -41,17 +41,25 @@
 
 <style>
 .download-card{
+    min-width: 300px;
     max-width: 500px;
     color: var(--md-sys-color-on-surface);
     background-color: var(--md-sys-color-surface-variant);
-
+    flex-grow: 1;
     padding: 16px;
-    margin: 0 auto 16px auto;
+    margin: 16px 0 0 16px;
+
     border-radius: 16px;
     display: grid;
     grid-template-rows: min-content;
     grid-template-columns: 20px 1fr 20px 1fr;
 }
+@media only screen and (max-width: 600px){
+    .download-card{
+        margin: 0 auto 16px auto;
+    }
+}
+
 .span-entire-row{
     grid-column: 1 / -1;
 }
@@ -119,40 +127,7 @@ span{
 
 <script lang="ts">
 import type { DownloadDataEntry } from '../interfaces/downloadEntry';
-import { WS } from "../store/store"
+import { WS, getCardTitle, formatBytes } from "../store/store"
 
 export let data: DownloadDataEntry;
-
-// https://stackoverflow.com/a/18650828
-function formatBytes(num: string, decimals:number = 2) : string {
-    let bytes:number =  parseInt(num)
-
-    if (bytes === 0) return '0 B';
-
-    const k = 1024;
-    const dm = decimals < 0 ? 0 : decimals;
-    const sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-}
-
-const getBaseNameSanitised = (path) => {
-    return path.split('/').filter(n=>n).reverse()[0]
-}
-
-const getCardTitle = () => {
-    //if file is torrent, this must be defined
-    if (data.bittorrent){
-        if (data.bittorrent.info) return data.bittorrent.info.name
-    }
-    // if file is from normal URL, path should contain fileName
-    if (data.files[0].path !== "") return getBaseNameSanitised(data.files[0].path)
-
-    // if download fails, the URL should contain the name
-    // split query params and get vanilla url
-    return getBaseNameSanitised(data.files[0].uris[0].uri.split('?',1)[0])
-}
-
 </script>

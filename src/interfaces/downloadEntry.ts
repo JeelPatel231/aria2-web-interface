@@ -32,12 +32,15 @@ export interface DownloadDataEntry{
     totalLength: string,
     uploadLength: string,
     uploadSpeed: string,
-
+    dir: string;
+    
     // urls
     
     // bittorrent
     bittorrent: BittorrentInterface,
     numSeeders: string,
+    infoHash:string,
+    seeder:string,
 
     // tell status entries
     bitfield?:string,
