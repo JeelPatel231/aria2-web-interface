@@ -15,6 +15,11 @@
     height: 100vh;
 }
 .download-cards{
+    display: flex;
+    height: max-content;
+    flex-wrap: wrap;
+    justify-content: center;
+
     padding: 16px;
 
     /* NESTED SCROLLING */
