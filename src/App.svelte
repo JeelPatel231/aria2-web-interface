@@ -1,10 +1,10 @@
 <!-- MAIN PAGE - COMPONENT TREE -->
 <div class="main-page">
 
-    <Siderail on:tabClicked={changeComponent} />
+    <Siderail />
 
     <div class="component-container">        
-        <svelte:component on:downloadAdded={changeComponent} this={ComponentDict[$activeTab]}/>
+        <svelte:component this={ComponentDict[$activeTab]}/>
     </div>
 
     <NotificationToast />
