@@ -1,4 +1,4 @@
-<div class="download-card body1" class:error={data.status == "error"}>
+<div class="download-card body1" class:error={data.status == "error"} on:click={()=>{WS.tellStatus(data.gid)}}>
     <!-- HEADER -->
 
     <div class="title headline3 span-entire-row">
@@ -24,11 +24,11 @@
 
     <div class="work-btn-container span-entire-row">
         {#if data.status == "active"}
-            <span class="work-btns" on:click={()=>{WS.pauseDownload(data.gid)}}> <span class="material-icons">pause</span> Pause</span>
-            <span class="work-btns"  on:click={()=>{WS.removeDownload(data.gid)}}><span class="material-icons">stop</span> Stop</span>
+            <span class="work-btns" on:click|stopPropagation={()=>{WS.pauseDownload(data.gid)}}> <span class="material-icons">pause</span> Pause</span>
+            <span class="work-btns"  on:click|stopPropagation={()=>{WS.removeDownload(data.gid)}}><span class="material-icons">stop</span> Stop</span>
         {:else if data.status == "paused" }
-            <span class="work-btns" on:click={()=>{WS.unpauseDownload(data.gid)}}> <span class="material-icons">play_arrow</span> Resume</span>
-            <span class="work-btns"  on:click={()=>{WS.removeDownload(data.gid)}}><span class="material-icons">close</span>Remove</span>
+            <span class="work-btns" on:click|stopPropagation={()=>{WS.unpauseDownload(data.gid)}}> <span class="material-icons">play_arrow</span> Resume</span>
+            <span class="work-btns"  on:click|stopPropagation={()=>{WS.removeDownload(data.gid)}}><span class="material-icons">close</span>Remove</span>
         {:else if data.status == "complete"}
             <span class="overline">completed</span>
         {:else if data.status == "removed"}
@@ -41,15 +41,13 @@
 
 <style>
 .download-card{
-    min-width: 300px;
     max-width: 500px;
     color: var(--md-sys-color-on-surface);
     background-color: var(--md-sys-color-surface-variant);
 
     padding: 16px;
-    margin: 16px 0 0 16px;
+    margin: 0 auto 16px auto;
     border-radius: 16px;
-    flex-grow: 1;
     display: grid;
     grid-template-rows: min-content;
     grid-template-columns: 20px 1fr 20px 1fr;

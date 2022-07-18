@@ -55,6 +55,13 @@ isDarkTheme.subscribe((value)=>{
     }
 })
 
+export const CURRENT_DETAIL:Writable<DownloadDataEntry> = writable(null) // detail pane data
+setInterval(()=>{
+    let curr = get(CURRENT_DETAIL)
+    if(!curr || curr.status == "complete") return
+    WS.tellStatus(curr.gid)
+},get(WS_POLL_INTERVAL))
+
 export const showNotification = (err:Toast) => {
     TOAST_QUEUE.set([ ...(get(TOAST_QUEUE)) , err ]) // assign this way for reactivity
     

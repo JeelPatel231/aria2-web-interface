@@ -38,4 +38,7 @@ export interface DownloadDataEntry{
     // bittorrent
     bittorrent: BittorrentInterface,
     numSeeders: string,
+
+    // tell status entries
+    bitfield?:string,
 }

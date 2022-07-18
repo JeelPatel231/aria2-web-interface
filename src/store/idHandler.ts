@@ -1,4 +1,4 @@
-import { DOWNLOADS_ARRAY, showNotification, updateCurrentTabArray, WS } from "./store"
+import { DOWNLOADS_ARRAY, CURRENT_DETAIL, showNotification, updateCurrentTabArray, WS } from "./store"
 
 const handleUpdates = (e) => {
     // if error, handle error first and return
@@ -24,6 +24,13 @@ const handleUpdates = (e) => {
 
 }
 
+// https://stackoverflow.com/a/68315766
+const hex2bin = (data) => data.split('').map(i => parseInt(i, 16).toString(2).padStart(4, '0')).join('');
+
+const tellStatusHandler = (e) => {
+    CURRENT_DETAIL.set(e.result)
+}
+
 export const mapOfIdFunctions = {
     // additions and removals
     "adduri" : handleUpdates,
@@ -34,6 +41,7 @@ export const mapOfIdFunctions = {
     "tellactive" : handleUpdates,
     "tellwaiting" : handleUpdates,
     "tellstopped" : handleUpdates,
+    "tellstatus" : tellStatusHandler,
     
     // pause unpause, own functions
     "pause": (_) => {WS.tellActive()},
