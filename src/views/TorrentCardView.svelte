@@ -28,8 +28,9 @@
 .download-info{
     padding: 16px;
     overflow-y: auto;
-    color: var(--md-sys-color-on-surface);
-    background-color: var(--md-sys-color-secondary-container);
+    color: var(--md-sys-color-on-background);
+    background-color: var(--md-sys-color-background);
+    border-left: 2px solid var(--md-sys-color-surface-variant);
     display: none;
 }
 
