@@ -4,7 +4,8 @@ import { get, Writable, writable } from 'svelte/store';
 import { AriaWebSocket } from './websockutils';
 
 // can try to use local storage of browser to reference the same but aight
-export const WS_RPC_URL: Writable<string> = writable("ws://localhost:6800/jsonrpc");
+const ENV_HOST = import.meta.env.VITE_HOST ?? "localhost"
+export const WS_RPC_URL: Writable<string> = writable(`ws://${ENV_HOST}:6800/jsonrpc`);
 export const WS_RPC_SECRET: Writable<string> = writable("");
 export const WS_POLL_INTERVAL: Writable<number> = writable(3000); // poll interval in ms, default = 3s or 3000ms
 
