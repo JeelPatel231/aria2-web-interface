@@ -3,9 +3,14 @@ import type { Toast } from '../interfaces/toast';
 import { get, Writable, writable } from 'svelte/store';
 import { AriaWebSocket } from './websockutils';
 
-// can try to use local storage of browser to reference the same but aight
+const WS_RPC_STORE_KEY = "LOCAL_WS_RPC_URL"
+
 const ENV_HOST = import.meta.env.VITE_HOST ?? "localhost"
-export const WS_RPC_URL: Writable<string> = writable(`ws://${ENV_HOST}:6800/jsonrpc`);
+
+const lastUsedRpcUrl = localStorage.getItem(WS_RPC_STORE_KEY) ?? `ws://${ENV_HOST}:6800/jsonrpc`
+console.info("using last saved URL", lastUsedRpcUrl)
+
+export const WS_RPC_URL: Writable<string> = writable(lastUsedRpcUrl);
 export const WS_RPC_SECRET: Writable<string> = writable("");
 export const WS_POLL_INTERVAL: Writable<number> = writable(3000); // poll interval in ms, default = 3s or 3000ms
 
@@ -36,6 +41,7 @@ export let WS : AriaWebSocket;
 //  run when WS_RPC_URL changes
 WS_RPC_URL.subscribe((value) => {
     console.log("changed value of websocket URL")
+    localStorage.setItem(WS_RPC_STORE_KEY, value)
     WS = new AriaWebSocket(value);
 })
 
