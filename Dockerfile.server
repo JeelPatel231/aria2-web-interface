@@ -1,0 +1,22 @@
+FROM alpine:latest
+
+RUN apk add aria2 openssl
+
+# private key PEM decrypted format
+RUN openssl genrsa -out privkey.pem 4096
+
+# cacert from the generated private key
+RUN yes "" | openssl req -new -x509 -key privkey.pem -out cacert.pem -days 365
+
+# bind your host filepath to /downloads of container
+RUN mkdir -p /downloads
+EXPOSE 6800
+
+ENTRYPOINT [	"aria2c", \
+  "--enable-rpc", \
+  "--rpc-listen-all", \
+  "--rpc-certificate=/cacert.pem", \
+  "--rpc-private-key=/privkey.pem", \
+  "--rpc-secure", \
+  "--rpc-allow-origin-all", \
+  "-d","/downloads" ]
